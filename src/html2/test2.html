@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue属性--监听属性--侦听器</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			千米:<input v-model="km" /><br />
+			米:<input v-model="m" />
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						km:0,
+						m:0
+					}
+				},
+				watch:{
+					km:function(v){
+						this.m=v*1000
+					},
+					m:function(v){
+						this.km=v/1000
+					}
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

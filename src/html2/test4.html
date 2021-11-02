@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			Vue样式--class绑定
+			通过v-bind:class为元素绑定类选择器
+		</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		<style type="text/css">
+			.active{
+				font-size: 36px;
+				color: red;
+				/* border: 5px solid red; */
+			}
+			.divBorder{
+				border: 5px solid blue;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<div class="divBorder">
+				1234567
+			</div>
+			
+			<div v-bind:class="{active:isActive,divBorder:isDivBorder}">
+				{{isActive}}
+				<p >Hello</p>
+				<button type="button" @click="isActive=(isActive?false:true)">click</button>
+			</div>
+		
+			<div :class="clsObj">
+				<p>hhhhh</p>
+			</div>
+		
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						isActive:true,
+						isDivBorder:true,
+						clsObj:{
+							active:true,
+							divBorder:true
+						}
+					}
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

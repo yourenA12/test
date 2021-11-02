@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://unpkg.com/vue@next"></script>
+		<meta charset="utf-8">
+		<title>Vue事件-- 事件处理器</title>
+	</head>
+	<body>
+		<div id="app">
+			<button v-on:click="count++">Count+1</button>{{count}}
+			<button v-on:click="showCount(count)">showCount</button>
+			<button id='001' v-on:click="showId('123')">showCount</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		Vue.createApp({
+			data(){
+				return{
+					count:0
+				}
+			},
+			methods:{
+				showCount:function(v){
+					alert(v)
+				},
+				showId:function(v){
+					alert(event.target.getAttribute("id")+":"+v)
+				}
+			}
+		}).mount("#app")
+	</script>
+	
+</html>

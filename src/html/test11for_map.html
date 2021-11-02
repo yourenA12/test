@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item,key) in items">
+					{{key}}:{{item}}
+				</li>
+			</ul>
+			
+			<p>{{items.a}}</p>
+		
+		
+			<ul>
+				<li v-for="(value,key,index) in items">
+					{{index+1}}:{{key}}:{{value}}
+				</li>
+			</ul>
+			
+			
+			<ul>
+				<li v-for="n in arrs">
+					{{n.name}}
+				</li>
+			</ul>
+			
+			
+			<ul>
+				<li v-for="u in arrs">
+					{{u}}
+				</li>
+			</ul>
+			
+			<ul>
+				<li v-for="u in 10">
+					{{u}}
+				</li>
+			</ul>
+		
+		</div>
+	</body>
+	<script type="text/javascript">
+		var items={
+			a:"aaa",
+			b:"bbb",
+			c:"ccc"
+		}
+		Vue.createApp({
+			data(){
+				return{
+					items,
+					arrs:[{name:"Jack"},{name:"Tom"}]
+				}
+			}
+		}).mount("#app")
+	</script>
+</html>

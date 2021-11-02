@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<p v-if="info=='hi'">Hi</p>
+			<p v-else-if="info='hello'" >Hello</p>
+			<p v-else>Nothing</p>
+			
+			<p v-show="info=='hi'">hi1</p>
+			<p v-show="info=='hello'">hello1</p>
+			<button v-on:click="info=(info=='hello'?'hi':'hello')">aa</button>
+			
+			<button @click="xxx()">hhh</button>
+			
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						info:"hello"
+					}
+				},
+				methods:{
+					xxx(){
+						alert("xxxx");
+					}
+				}
+			}).mount("#app")
+			
+		</script>
+		
+	</body>
+</html>

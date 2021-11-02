@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue表单输入绑定--checkbox</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<input type="checkbox" v-model="cks" value="c1" />c1
+			<input type="checkbox" v-model="cks" value="c2" />c2
+			<input type="checkbox" v-model="cks" value="c3" />c3
+			<br />
+			{{cks==''?'':cks}}
+			
+			<button @click="testC2" >test</button>
+			
+		</div>
+		
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						cks:["c1","c3"]
+					}
+				},
+				methods:{
+					testC2(){
+						if( this.cks.indexOf("c2")>-1 ){
+							alert("c2被选中")
+						}else{
+							alert("c2未被选中")
+						}
+					}
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

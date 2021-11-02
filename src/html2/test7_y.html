@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue事件--事件修饰符</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		<style type="text/css">
+			.one{
+				background: #0000FF;
+				width: 200px;
+				height: 200px;
+			}
+			.two{
+				background: #ff0000;
+				width: 150px;
+				height: 150px;
+			}
+			.three{
+				background: #ffff00;
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<!-- .stop		阻止事件冒泡
+			.prevent	取消事件的默认行为
+			.self		事件必须在自身触发
+			.once		事件只触发一次
+			.capture    内部元素触发的事件先在此处理，然后才交由内部元素进行处理
+		-->
+		
+		<div id="app">
+			<!-- self 事件必须在自身触发 -->
+			<div :class="{one:isOne}" @click.self="oneMethod">
+				<!-- once 事件只触发一次 -->
+				<div :class="{two:isTwo}" @click.once="twoMethod">
+					<!-- stop 阻止事件冒泡 -->
+					<div :class="{three:isThree}" @click.stop="threeMethod"></div>
+				</div>
+			</div>
+			
+			<!-- prevent 取消事件的默认行为 -->
+			<a href="http://www.baidu.com" @click.prevent="href">百度</a>
+			
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data(){
+					return{
+						isOne:true,
+						isTwo:true,
+						isThree:true
+					}
+				},
+				methods:{
+					oneMethod(){
+						console.log("one");
+					},
+					twoMethod(){
+						console.log("two");
+					},
+					threeMethod(){
+						console.log("three");
+					},
+					href(){
+						alert("hi")
+					}
+				}
+			}).mount("#app")
+		</script>
+	</body>
+</html>

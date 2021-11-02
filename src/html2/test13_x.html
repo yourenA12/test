@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://unpkg.com/vue@next"></script>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+					您喜欢的城市是？
+					<button @click="a" v-model="all">{{all}}</button>
+					<!-- <button @click="b">全不选</button> -->
+					<button @click="c">反选</button>
+					<br>
+					<label><input type="checkbox" value="长沙" v-model="v" class="chk">长沙</label>
+					<label><input type="checkbox" value="株洲" v-model="v" class="chk">株洲</label>
+					<label><input type="checkbox" value="上海" v-model="v" class="chk">上海</label>
+					<br>
+					您选择了：{{v}}
+				</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data(){
+					return{
+                        all:"全选",
+						v:[]	
+					}
+				},
+				methods:{
+					a:function(){
+                        if(this.all=="全选"){
+                            this.all="全不选"
+                            var checks=document.getElementsByClassName("chk");
+                            if(this.v.length==0){
+                                for(var j=0;j<checks.length;j++){
+                                    this.v.push(checks[j].value)
+                                }
+                                // this.v.push('长沙')
+						        // this.v.push('株洲')
+						        // this.v.push('上海')
+                            }else{
+                                this.v=[]
+                                for(var j=0;j<checks.length;j++){
+                                    this.v.push(checks[j].value)
+                                }
+                                // for(var i=0;i<this.v.length;i++){
+                                //     for(var j=0;j<checks.length;j++){
+                                //         if(this.v[i] != checks[j].value){
+                                //             this.v.push(checks[j].value)
+                                //         }
+                                //     }
+                                // }
+                            }
+                        }else{
+                            this.all="全选"
+                            this.v=[]
+                        }
+						
+						//this.v=['长沙','株洲','上海']
+					},
+					// b:function(){
+					// 	this.v=[]
+					// },
+					c:function(){
+						var nv=['长沙','株洲','上海']
+						this.v.forEach(function(e){
+							var index=nv.indexOf(e);
+							nv.splice(index,1)
+						})
+						this.v=nv
+					}
+				}
+			}).mount("#app")
+		</script>	
+	</body>
+</html>

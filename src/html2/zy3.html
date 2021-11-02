@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物车</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		
+		<style type="text/css">
+			.js{
+				width: 70px;
+				text-align: center;
+				border: 2px solid grey;
+			}
+			
+			.js2{
+				width: 70px;
+				text-align: center;
+				border: 2px solid red;
+				color: red;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<div id="app">
+			<table border="1" >
+				<thead>
+					<tr>
+						<th>
+							<label @click="quanxuan">
+								<input type="checkbox" name="qx" id="qx" value="全选"/>全选
+							</label>
+						</th>
+						<th>商品名称</th>
+						<th>价格</th>
+						<th>数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr v-for="(pro,i) in products">
+						<td><input @click="jiesuan" type="checkbox" name="xz" :id="'xz'+i" value="选中"/></td>
+						<td>{{pro.proName}}</td>
+						<td>{{pro.proPrice}}</td>
+						<td>
+							<!-- <button @click=" pro.proNum>1? pro.proNum-- : pro.proNum">-</button>	 -->
+							<button :disabled="dis" @click="jian(i)">-</button>
+								<span class="num">{{pro.proNum}}</span>
+							<button :disabled="dis2" @click="jia(i)">+</button>
+							<!-- <button @click="pro.proNum<10? pro.proNum++ : pro.proNum">+</button> -->
+						</td>
+						<td><button @click="removeProduct(i)" >删除</button></td>
+					</tr>
+				</tbody>
+				
+				<tfoot>
+					<tr>
+						<td colspan="5">{{total}}</td>
+					</tr>
+				</tfoot>
+				
+			</table>
+			总价：￥{{total}}<br/>
+			
+			<button @click="addgwc" >添加购物车</button>
+			
+			<div v-show="false" id="addgwc">
+				商品id:<input type="text" v-model="id"><br/>
+				商品名称:<input type="text" v-model="name"><br/>
+				商品价格:<input type="text" v-model="price"><br/>
+				商品数量:<input type="text" v-model="number"><br/>
+				<button @click="add" >添加</button>
+			</div>
+			
+			<br /><br />
+			<div class="js" :class="{js2:isjs}">去结算</div>
+			
+		</div>
+		
+		<script type="text/javascript">
+		
+			
+			// if( $(".num").text() ==1 ){
+			// 	alert("xxx");
+			// }
+			
+		
+			Vue.createApp({
+				data() {
+					return{
+						isjs:false,
+						dis:false,
+						dis2:false,
+						products:[
+							{
+								proId:1001,
+								proName:"华为",
+								proPrice:5000,
+								proNum:1
+							},
+							{
+								proId:1002,
+								proName:"小米",
+								proPrice:4000,
+								proNum:1
+							},
+							{
+								proId:1003,
+								proName:"三星",
+								proPrice:2000,
+								proNum:1
+							},
+							{
+								proId:1004,
+								proName:"苹果",
+								proPrice:6000,
+								proNum:1
+							}
+						]
+					}
+				},
+				computed:{
+					total(){
+						var price=0;
+						for(i in this.products){
+							p=this.products[i]
+							price=price+p.proNum*p.proPrice;
+						}
+						return price;
+					}
+				},
+				methods:{
+						removeProduct(index){
+							this.products.splice(index,1)
+						},
+						quanxuan(){
+							if( $("[name='qx']").prop("checked") ){
+								$("[name='xz']").prop("checked", true);
+								this.isjs=true;
+							}else{
+								$("[name='xz']").prop("checked", false);
+								this.isjs=false;
+							}
+							
+						},
+						addgwc(){
+							$("#addgwc").toggle();
+						},
+						add(){
+							$("#addgwc").toggle();
+							var car={proId:this.id,proName:this.name,proPrice:this.price,proNum:this.number};
+							this.products.push(car);
+							
+						},
+						jiesuan(){
+							 var len = $("input[name='xz']:checkbox:checked").length; 
+							 if(len>0){
+								this.isjs=true;
+							 }else{
+								this.isjs=false;
+							 }
+						},
+						jian(i){
+							if(this.products[i].proNum>1){
+								this.products[i].proNum--;
+								this.dis2=false;
+								
+							}else{
+								this.dis=true;
+							}
+							
+						},
+						jia(i){
+							if(this.products[i].proNum<10){
+								this.products[i].proNum++;
+								this.dis=false;
+								
+							}else{
+								this.dis2=true;
+							}
+						}
+						
+						
+						
+				}
+
+				
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

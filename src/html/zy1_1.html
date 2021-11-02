@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body id="xxx" :style="xcolor">
+
+		<div id="app" :style="xcolor">
+			<input type="button" @click="cor" value="点" />
+		</div>
+
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						xcolor:''
+					}
+				},
+				methods: {
+					cor() {
+						this.xcolor="background:red"
+					}
+				}
+			}).mount("#app")
+		</script>
+
+	</body>
+</html>

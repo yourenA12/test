@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue属性--为计算属性指定setter</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		</script>
+	</head>
+	<body>
+		
+		<div id="app">
+			{{msg}}<br/>
+			{{UpperMsg}}<br>
+			{{toUpperMsg()}}
+			
+			{{UpperMsg}}<br>
+			{{toUpperMsg()}}
+			
+			{{UpperMsg}}<br>
+			{{toUpperMsg()}}
+			
+			<button @click="msg='love'">点击</button>
+			
+			<input v-model="UpperMsg" />
+			
+		</div>
+		
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						msg:"Hello Vue"
+					}
+				},
+				computed:{
+					// UpperMsg(){
+					// 	console.log("in computed UpperMsg")
+					// 	return this.msg.toUpperCase()
+					// }
+					UpperMsg:{
+						get(){
+							console.log("in computed UpperMsg")
+							return this.msg.toUpperCase()
+						},
+						set(value){
+							this.msg=value
+						}
+					}
+				},
+				methods:{
+					toUpperMsg(){
+						console.log("in methods toUpperMsg")
+						return this.msg.toUpperCase()
+					}
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

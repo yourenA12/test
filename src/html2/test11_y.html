@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://unpkg.com/vue@next"></script>
+		<meta charset="utf-8">
+		<title>Vue表单输入绑定--radio</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="radio" id="baidu" value="baidu" v-model="site">百度
+			<input type="radio" id="google" value="google" v-model="site">谷歌
+			<span>{{site}}</span>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		Vue.createApp({
+			data(){
+				return{
+					site:'baidu'
+				}
+			}
+		}).mount("#app")
+	</script>
+</html>

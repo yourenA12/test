@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 使用vue完成员工信息的增删改查，员工信息包括：
+        编号、姓名、性别、电话、入职日期（修改选做）</title>
+        <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+
+        <div>
+            <h3>添加员工</h3>
+        </div>
+        <div>
+            编号：<input type="text" v-model="id"/><br/>
+            姓名：<input type="text" v-model="name"/><br/>
+            性别：<input type="text" v-model="sex"/><br/>
+            电话：<input type="text" v-model="phone"/><br/>
+            <button v-on:click="add()">添加</button>
+            <br>           
+        </div>
+		
+        
+		搜索名关键字:<input type="text" v-model="keywords">		
+        <table border="1" style="margin:auto;">
+            <thead>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>入职日期</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr v-for="item in sel(keywords)" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.sex}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.ctime}}</td>
+                    <td><a href=" " @click.prevent="del(item.id)">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	 <script type="text/javascript">
+	        Vue.createApp({
+	            data () {
+	                return {
+	                    keywords:'',
+	                    list:[
+	                        {id:1,name:'f(x)',sex:'男',phone:13811111111,ctime:new Date()},
+	                        {id:2,name:'NCT',sex:'女',phone:13111111111,ctime:new Date()},
+	                    ]
+	                }
+	            },
+	            methods: {
+	                add(){
+	                    var car={id:this.id,name:this.name,sex:this.sex,phone:this.phone,ctime:new Date()}
+	                    this.list.push(car)
+	                },
+	                del(id){
+	                    for(var i=0;i<this.list.length;i++){
+	                        alert(this.list[i].id)
+	                        alert(id)
+	                        if(this.list[i].id==id){
+	                            this.list.splice(i,1) 
+	                            return true
+	                        }
+	                        
+	                    }
+	
+	                    // this.list.some((item,i)=>{
+	                    //     alert(id)
+	                    //      if(item.id==id){
+	                    //         this.list.splice(i);
+	                    //         return true
+	                    // }
+	                    // })
+	                   
+	                },
+	                sel(key){
+	                    this.keywords=key;
+	                   
+	                    var newList=[];
+	                    for(var i=0;i<this.list.length;i++){
+	                        if(this.list[i].name.indexOf(key)!=-1){ 
+	                            newList.push(this.list[i])
+	                        }
+	                    }
+	                    // this.list.foreEach(item=>{
+	                    //       if(item.name.indexOf(key)!=-1){
+	                    //     newList.push(item)
+	                    // }
+	                    // })
+	                  return newList;
+	                }
+	            }
+	        }).mount('#app')
+	    </script>
+	</body>
+	</html>

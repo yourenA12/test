@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue样式--style绑定</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<p :style="[mycolor,mysize]">Hello</p>
+			<p :style="{color:c1}">world</p>
+		</div>
+		
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						mycolor:"color:red",
+						mysize:"font-size:48px",
+						c1:"blue"
+						
+					}
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

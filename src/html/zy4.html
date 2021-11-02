@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<p v-bind:style="sx+s+dw">我是文字默认12像素</p>
+			
+			<input type="range" v-model="s" v-on:change="showInfo"/>{{s}}
+			
+		</div>
+		
+		<script type="text/javascript">
+			Vue.createApp({
+				data(){
+				      return{
+				       sx : "font-size:",
+				       s : 12,
+				       dw : "px"
+				      }
+				     },
+				methods:{
+					showInfo(){
+						console.log("失去焦点会触发",this.s)
+					}
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button v-on:click="addEmp">添加员工</button>
+            <table border="1">
+                <thead>
+                    <th>员工编号</th>
+                    <th>员工名称</th>
+                    <th>员工性别</th>
+                    <th>员工电话</th>
+                    <th>入职日期</th>
+                    <th>操作</th>
+                </thead>
+                <tbody>
+                    <tr v-for="e in emp">
+                        <td>{{e.empno}}</td>
+                        <td>{{e.ename}}</td>
+                        <td>{{e.sex}}</td>
+                        <td>{{e.phone}}</td>
+                        <td>{{e.hiredate}}</td>
+                        <td><button v-on:click="deleteEmp(e.empno)">删除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <script type="text/javascript">
+            const app = {
+                data(){
+                    return{
+                        emp:[{
+                            empno:"1",
+                            ename:"jack",
+                            sex:"男",
+                            phone:"10086",
+                            hiredate:"2001-05-07"
+                        }]
+                    }
+                },
+				methods:{
+                    deleteEmp(empno){
+                        for(var i=0;i<this.emp.length;i++){
+                            if(this.emp[i].empno == empno){
+                                this.emp.splice(i,1);
+                            }
+                        }
+                    },
+					addEmp(){
+                        var inputEmpno =  prompt("请输入员工编号");
+                        var inputEname =  prompt("请输入员工名称");
+                        var inputSex =  prompt("请输入员工性别");
+                        var inputPhone =  prompt("请输入员工电话");
+                        var inputHiredate =  prompt("请输入入职日期");
+                        this.emp.push({
+                            empno:inputEmpno,
+                            ename:inputEname,
+                            sex:inputSex,
+                            phone:inputPhone,
+                            hiredate:inputHiredate
+                        })
+                    }
+                }
+            };
+            
+            Vue.createApp(app).mount("#app");
+        </script>
+    </body>
+</html>

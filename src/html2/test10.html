@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue事件--事件修饰符</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		<style>
+			.div1{
+				width: 200px;
+				height: 200px;
+				background-color: bottom: ;lue;
+			}
+			.div2{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			.div3{
+				width: 50px;
+				height: 50px;
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- capture：捕获，取消class效果 -->
+			<!-- <div :class="d1" @click.capture="clickDiv1"> -->
+			<div :class="d1" @click="clickDiv1">
+				<div :class="d2" @click="clickDiv2">
+					<div :class="d3" @click="clickDiv3">
+						
+					</div>
+				</div>
+			</div>
+			<!-- prevent： 拦截，阻止跳转 -->
+			<a href="http://www.baidu.com" @click.prevent="sayHi">百度</a>
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data(){
+					return{
+						d1:"div1",
+						d2:"div2",
+						d3:"div3"
+					}
+				},
+				methods:{
+					clickDiv1(){
+						console.log("div1")
+					},
+					clickDiv2(){
+						console.log("div2")
+					},
+					clickDiv3(){
+						console.log("div3")
+					},
+					sayHi(){
+						alert("Hello vue")
+					}
+				}
+			}).mount("#app")
+		</script>
+	</body>
+</html>

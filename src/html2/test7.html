@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			Vue样式--class绑定
+			绑定返回对象的计算属性
+		</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		<style>
+			.active{
+				background: #aaffff;
+				width: 100px;
+				height: 100px;
+			}
+			.text-danger{
+				color: #FF0000;
+				font-size: 48px;
+			}
+			.border{
+				border: blue solid 2px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<input v-model="msg" /><br>
+			<div :class="clsOjb">{{msg}}</div>
+			<div :class="[ac,bd]"></div>
+			
+			<div :class="[ac,isError?bd:'']"></div>
+			
+			<div :class="isError?danger:''">hello</div>
+			<button @click="isError=!isError">error</button>
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data(){
+					return{
+						msg:"",
+						ac:"active",
+						bd:"border",
+						isError:true,
+						danger:"text-danger"
+					}
+				},
+				computed:{
+					clsOjb(){
+						return{
+							"text-danger":this.msg.length>=4?true:false,
+							border:true,
+							active:true
+						}
+					}
+					
+				}
+			}).mount("#app")
+		</script>
+	</body>
+</html>

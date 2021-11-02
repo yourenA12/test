@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue表单输入绑定--：v-model</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<input v-model.lazy="msg1"/>{{msg1}} <br />
+			<textarea v-model="info1">safadf</textarea>
+			<br />
+			{{n}}
+			<input v-model.number="n" />
+			{{n+10}}
+			
+			<!-- <input type="number" /> -->
+			<br />
+			<input v-model.trim="msg1" />{{msg1.length}}
+		</div>
+		
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						msg1:"hello",
+						info1:"lalala Vue",
+						n:10
+					}
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

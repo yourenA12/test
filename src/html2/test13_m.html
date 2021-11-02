@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>全选、全不选与反选</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			你喜欢的城市是？
+			<button @click="a">全选</button>
+			<!-- <button @click="b">全不选</button> -->
+			<button @click="c">反选</button>
+			<br />
+			
+			<label><input type="checkbox" v-model="citys" value="长沙" />长沙</label>
+			<label><input type="checkbox" v-model="citys" value="株洲" />株洲</label>
+			<label><input type="checkbox" v-model="citys" value="湘潭" />湘潭</label>
+			
+			<br />
+			{{citys==''?'':citys}}
+			
+		</div>
+		
+		<script type="text/javascript">
+			Vue.createApp({
+				data() {
+					return{
+						citys:[],
+					}
+				},
+				methods:{
+					a(){
+						this.citys=["长沙","株洲","湘潭"]
+						
+					},
+					b(){
+						this.citys=[]
+						
+					},
+					c(){
+						var nv=['长沙','株洲','湘潭']
+						this.citys.forEach(function(e){
+							// alert(e);
+							var index=nv.indexOf(e);
+							nv.splice(index,1)
+						})
+						this.citys=nv
+
+					}
+					
+				}
+			}).mount("#app")
+		</script>
+		
+	</body>
+</html>

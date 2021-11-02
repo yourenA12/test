@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			Vue样式--class绑定
+			通过v-bind:class为元素绑定类选择器
+		</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		<style>
+			.active{
+				background: #aaffff;
+				width: 100px;
+				height: 100px;
+			}
+			.text-danger{
+				color: #FF0000;
+				font-size: 48px;
+			}
+			.border{
+				border: blue solid 2px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div :class={active:isActive,'text-danger':hasError}>ss</div>
+			<button @click="isActive=!isActive">Active</button>
+			<button @click="hasError=!hasError">hasError</button>
+			<div :class="clsObj"></div>
+			<button @click="clsObj.border=!clsObj.border,clsObj.active=!clsObj.active">border</button>
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data(){
+					return{
+						isActive:true,
+						hasError:true,
+						clsObj:{
+							border:true,
+							active:true
+						}
+					}
+				}
+			}).mount("#app")
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://unpkg.com/vue@next"></script>
+		
+	</head>
+	<body>
+		<div id="app">
+			1<p v-html="href">Hello</p>
+			2<p v-text="href">World</p>
+			3<p>{{href}}</p>
+			4<p v-html="msg"></p>
+			5<p v-pre>{{tset}}</p>
+			6<p>{{test}}</p>
+		</div>
+		<script type="text/javascript">
+			Vue.createApp({
+				data(){
+					return{
+						href:"<a href='http://www.baidu.com'>百度</a>",
+						msg:"插值{{test}}表达式"
+					}
+				}
+			}).mount("#app")
+		</script>
+	</body>
+</html>
